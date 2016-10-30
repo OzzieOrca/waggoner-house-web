@@ -1,5 +1,11 @@
 <h1>
   Waggoner House
 </h1>
-<button (click)="login()">Sign In</button>
+<div [ngSwitch]="!!currentUser">
+  <div *ngSwitchCase="true">
+    <div>Welcome {{currentUser.displayName}}</div>
+    <button (click)="logout()">Sign Out</button>
+  </div>
+  <button *ngSwitchCase="false" (click)="login()">Sign In</button>
+</div>
 <app-thermostats></app-thermostats>

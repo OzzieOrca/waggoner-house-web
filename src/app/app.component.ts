@@ -7,10 +7,25 @@ import { AngularFire } from 'angularfire2';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public currentUser: any;
 
-  constructor(private af: AngularFire) {}
+  constructor(private af: AngularFire) {
+    this.af.auth.subscribe(authData => {
+      if(authData){
+        this.currentUser = authData.google;
+        af.database.object(`/users/${authData.uid}`)
+          .update(authData.google);
+      }else{
+        this.currentUser = false;
+      }
+    })
+  }
 
   login() {
     this.af.auth.login();
+  }
+
+  logout() {
+    this.af.auth.logout();
   }
 }
