@@ -1,3 +1,62 @@
-<p>
-  {{zone | json}}
-</p>
+<div class="card">
+  <div class="card-block">
+    <div class="row flex-items-xs-between">
+      <div class="col-xs">
+        <h5>
+          {{zone.name}}
+        </h5>
+      </div>
+      <div class="col-xs text-xs-right text-muted">
+        Zone {{zone.$key}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs display-3">
+        {{zone.currentTemperature}}&deg;
+      </div>
+      <div class="col-xs">
+        <div ngbRadioGroup name="mode" [(ngModel)]="zone.currentMode" (change)="setMode(zone.currentMode)" name="mode">
+          <label class="btn btn-secondary">
+            <input type="radio" value="O">
+            Off
+          </label>
+          <label class="btn btn-outline-primary">
+            <input type="radio" value="C">
+            Cool
+          </label>
+          <label class="btn btn-outline-danger">
+            <input type="radio" value="H">
+            Heat
+          </label>
+          <label class="btn btn-outline-warning">
+            <input type="radio" value="A">
+            Auto
+          </label>
+        </div>
+        <button type="button" class="btn btn-outline-success" [class.active]="zone.fanMode === '1'" (click)="toggleFan()">
+          Fan:
+          <span *ngIf="zone.fanMode === '1'">On</span>
+          <span *ngIf="zone.fanMode === '0'">Auto</span>
+        </button>
+        <div class="input-group temp-input" *ngIf="zone.currentMode === 'C' || zone.currentMode === 'A'">
+          <span class="input-group-btn">
+            <button class="btn btn-outline-danger" type="button" (click)="updateSetPointCooling(zone.setPointCooling - 1)">-</button>
+          </span>
+          <input type="text" class="form-control cooling-background darker-input-border" [ngModel]="zone.setPointCooling" disabled>
+          <span class="input-group-btn">
+            <button class="btn btn-outline-success" type="button" (click)="updateSetPointCooling(zone.setPointCooling + 1)">+</button>
+          </span>
+        </div>
+        <div class="input-group temp-input" *ngIf="zone.currentMode === 'H' || zone.currentMode === 'A'">
+          <span class="input-group-btn">
+            <button class="btn btn-outline-danger" type="button" (click)="updateSetPointHeating(zone.setPointHeating - 1)">-</button>
+          </span>
+          <input type="text" class="form-control heating-background darker-input-border" [ngModel]="zone.setPointHeating" disabled>
+          <span class="input-group-btn">
+            <button class="btn btn-outline-success" type="button" (click)="updateSetPointHeating(zone.setPointHeating + 1)">+</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

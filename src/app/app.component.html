@@ -1,11 +1,23 @@
-<h1>
-  Waggoner House
-</h1>
-<div [ngSwitch]="!!currentUser">
-  <div *ngSwitchCase="true">
-    <div>Welcome {{currentUser.displayName}}</div>
-    <button (click)="logout()">Sign Out</button>
+<nav class="navbar navbar-light bg-faded mb-2">
+  <a class="navbar-brand" href="#">Waggoner House</a>
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Thermostats</a>
+    </li>
+  </ul>
+  <form class="form-inline float-xs-right flex-items-xs-middle" [ngSwitch]="!!currentUser">
+    <button class="btn btn-outline-success" type="button" *ngSwitchCase="false" (click)="login()">Sign In</button>
+    <span *ngSwitchCase="true">
+      {{currentUser.displayName}}
+      <button class="btn btn-sm btn-outline-secondary" type="button" (click)="logout()">Sign Out</button>
+    </span>
+  </form>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs">
+      <app-thermostats></app-thermostats>
+    </div>
   </div>
-  <button *ngSwitchCase="false" (click)="login()">Sign In</button>
 </div>
-<app-thermostats></app-thermostats>

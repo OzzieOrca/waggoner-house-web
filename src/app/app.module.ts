@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { ThermostatsComponent } from './thermostats/thermostats.component';
@@ -32,7 +33,8 @@ const myFirebaseAuthConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

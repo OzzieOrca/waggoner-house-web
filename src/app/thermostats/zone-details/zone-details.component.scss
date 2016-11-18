@@ -1,0 +1,15 @@
+@import "../../../../node_modules/bootstrap/scss/variables";
+
+.temp-input{
+  margin-top: $spacer;
+  width: 8.6em;
+  .cooling-background{
+    background-color: #e1effa;
+  }
+  .heating-background{
+    background-color: #fae9e8;
+  }
+  .darker-input-border{
+    border-color: #bfbfbf;
+  }
+}
