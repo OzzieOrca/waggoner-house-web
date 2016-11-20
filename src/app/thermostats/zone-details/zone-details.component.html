@@ -33,10 +33,8 @@
             Auto
           </label>
         </div>
-        <button type="button" class="btn btn-outline-success" [class.active]="zone.fanMode === '1'" (click)="toggleFan()">
-          Fan:
-          <span *ngIf="zone.fanMode === '1'">On</span>
-          <span *ngIf="zone.fanMode === '0'">Auto</span>
+        <button type="button" class="btn btn-outline-success" [class.active]="zone.fanMode" (click)="toggleFan()">
+          Fan
         </button>
         <div class="input-group temp-input" *ngIf="zone.currentMode === 'C' || zone.currentMode === 'A'">
           <span class="input-group-btn">
@@ -55,6 +53,31 @@
           <span class="input-group-btn">
             <button class="btn btn-outline-success" type="button" (click)="updateSetPointHeating(zone.setPointHeating + 1)">+</button>
           </span>
+        </div>
+      </div>
+      <div class="col-xs text-xs-right" [ngSwitch]="zone.childZoneNum === 1 && !zone.zoneDamper1Status || zone.childZoneNum === 2 && !zone.zoneDamper2Status">
+        <div *ngSwitchCase="true">
+          <div>
+            <span class="tag tag-default tag-status-info active" *ngIf="zone.minOffTimeStage1">Stage 1 Min Off Time</span>
+            <span class="tag tag-default tag-status-info active" *ngIf="zone.minOffTimeStage2">Stage 2 Min Off Time</span>
+            <span class="tag tag-default tag-status-info active" *ngIf="zone.minRunTimeStage1">Stage 1 Min Run Time</span>
+            <span class="tag tag-default tag-status-info active" *ngIf="zone.minRunTimeStage2">Stage 2 Min Run Time</span>
+            <span class="tag tag-default tag-status-success" [class.active]="zone.fanStatus" *ngIf="zone.currentMode !== 'O' || zone.fanMode">Fan</span>
+          </div>
+          <div *ngIf="zone.currentMode === 'C' || zone.currentMode === 'A'">
+            <span class="tag tag-default tag-status-primary"[class.active]="zone.systemModeStatus === 'C'">Cooling</span>
+            <span class="tag tag-default tag-status-primary" [class.active]="zone.coolingStage1">Cooling Stage 1</span>
+            <span class="tag tag-default tag-status-primary" [class.active]="zone.coolingStage2">Cooling Stage 2</span>
+          </div>
+          <div *ngIf="zone.currentMode === 'H' || zone.currentMode === 'A'">
+            <span class="tag tag-default tag-status-danger"[class.active]="zone.systemModeStatus === 'H'">Heating</span>
+            <span class="tag tag-default tag-status-danger" [class.active]="zone.heatingStage1">Heating Stage 1</span>
+            <span class="tag tag-default tag-status-danger" [class.active]="zone.heatingStage2">Heating Stage 2</span>
+            <span class="tag tag-default tag-status-danger" [class.active]="zone.heatingStage3">Heating Stage 3</span>
+          </div>
+        </div>
+        <div *ngSwitchCase="false">
+          <span class="tag tag-default tag-status-warning active">Zone Damper Closed</span>
         </div>
       </div>
     </div>

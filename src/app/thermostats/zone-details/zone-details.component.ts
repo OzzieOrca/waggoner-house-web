@@ -17,7 +17,7 @@ export class ZoneDetailsComponent implements OnInit {
   }
 
   toggleFan(){
-    this.zoneUpdate.emit({ fanMode: this.zone.fanMode === '1' ? '0' : '1' });
+    this.zoneUpdate.emit({ fanMode: this.zone.fanMode === 1 ? 0 : 1 });
   }
 
   setMode(mode){

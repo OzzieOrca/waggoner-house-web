@@ -13,3 +13,33 @@
     border-color: #bfbfbf;
   }
 }
+
+.tag-status-primary{
+  color: $gray-dark;
+  background-color: #FFF;
+  border: 1px $brand-primary solid;
+  &.active {
+    background-color: $brand-primary;
+    color: #FFF;
+  }
+}
+
+$brand-types: (
+  primary: $brand-primary,
+  success: $brand-success,
+  info: $brand-info,
+  warning: $brand-warning,
+  danger: $brand-danger
+);
+
+@each $name, $color in $brand-types {
+  .tag-status-#{$name}{
+    color: $gray-dark;
+    background-color: #FFF;
+    border: 1px $color solid;
+    &.active {
+      background-color: $color;
+      color: #FFF;
+    }
+  }
+}
