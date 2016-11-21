@@ -1,31 +1,23 @@
 import { Component } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [AuthService]
 })
 export class AppComponent {
-  public currentUser: any;
 
-  constructor(private af: AngularFire) {
-    this.af.auth.subscribe(authData => {
-      if(authData){
-        this.currentUser = authData.google;
-        af.database.object(`/users/${authData.uid}`)
-          .update(authData.google);
-      }else{
-        this.currentUser = false;
-      }
-    })
+  constructor(private authService: AuthService) {
+
   }
 
-  login() {
-    this.af.auth.login();
+  signIn() {
+    this.authService.signIn();
   }
 
-  logout() {
-    this.af.auth.logout();
+  signOut() {
+    this.authService.signOut();
   }
 }
