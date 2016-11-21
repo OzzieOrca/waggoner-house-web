@@ -12,11 +12,11 @@ export class AuthService {
     this.currentUser = this.af.auth
       .map(authData => {
         let currentUser;
-        if(authData){
+        if (authData) {
           currentUser = authData.google;
           af.database.object(`/users/${authData.uid}`)
             .update(authData.google);
-        }else{
+        }else {
           currentUser = false;
           router.navigate(['']);
         }

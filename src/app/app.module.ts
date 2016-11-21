@@ -15,11 +15,11 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyCTxvTzS1okO8lq-ZBk0q55geHttcQfDQ0",
-  authDomain: "waggoner-house.firebaseapp.com",
-  databaseURL: "https://waggoner-house.firebaseio.com",
-  storageBucket: "waggoner-house.appspot.com",
-  messagingSenderId: "942780654805"
+  apiKey: 'AIzaSyCTxvTzS1okO8lq-ZBk0q55geHttcQfDQ0',
+  authDomain: 'waggoner-house.firebaseapp.com',
+  databaseURL: 'https://waggoner-house.firebaseio.com',
+  storageBucket: 'waggoner-house.appspot.com',
+  messagingSenderId: '942780654805'
 };
 
 const myFirebaseAuthConfig = {

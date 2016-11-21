@@ -16,7 +16,7 @@ export class ThermostatsComponent implements OnInit {
   ngOnInit() {
   }
 
-  update(zone, updatedKeys){
+  update(zone, updatedKeys) {
     this.zones.update(zone, updatedKeys);
   }
 }
