@@ -11,10 +11,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs display-3">
+      <div class="col-sm-3 display-3">
         {{zone.currentTemperature}}&deg;
       </div>
-      <div class="col-xs">
+      <div class="col-sm-7 col-md-5">
         <div ngbRadioGroup name="mode" [(ngModel)]="zone.currentMode" (change)="setMode(zone.currentMode)" name="mode">
           <label class="btn btn-secondary">
             <input type="radio" value="O">
@@ -33,7 +33,8 @@
             Auto
           </label>
         </div>
-        <button type="button" class="btn btn-outline-success" [class.active]="zone.fanMode" (click)="toggleFan()">
+        <br class="hidden-lg-up">
+        <button type="button" class="btn btn-outline-success mt-lg" [class.active]="zone.fanMode" (click)="toggleFan()">
           Fan
         </button>
         <div class="input-group temp-input" *ngIf="zone.currentMode === 'C' || zone.currentMode === 'A'">
@@ -55,7 +56,7 @@
           </span>
         </div>
       </div>
-      <div class="col-xs text-xs-right" [ngSwitch]="zone.childZoneNum === 1 && !zone.zoneDamper1Status || zone.childZoneNum === 2 && !zone.zoneDamper2Status">
+      <div class="col-sm text-xs-right mt-md" [ngSwitch]="zone.childZoneNum === 1 && !zone.zoneDamper1Status || zone.childZoneNum === 2 && !zone.zoneDamper2Status">
         <div *ngSwitchCase="true">
           <div>
             <span class="tag tag-default tag-status-info active" *ngIf="zone.minOffTimeStage1">Stage 1 Min Off Time</span>

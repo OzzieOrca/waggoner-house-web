@@ -1,17 +1,20 @@
 <nav class="navbar navbar-light bg-faded mb-2">
   <a class="navbar-brand" routerLink="">Waggoner House</a>
-  <ul class="nav navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" routerLink="/thermostats" routerLinkActive="active">Thermostats</a>
-    </li>
-  </ul>
-  <form class="form-inline float-xs-right flex-items-xs-middle" [ngSwitch]="!!(authService.currentUser | async)">
-    <button class="btn btn-outline-success" type="button" *ngSwitchCase="false" (click)="authService.signIn()">Sign In</button>
-    <span *ngSwitchCase="true">
-      {{(authService.currentUser | async).displayName}}
-      <button class="btn btn-sm btn-outline-secondary" type="button" (click)="authService.signOut()">Sign Out</button>
-    </span>
-  </form>
+  <button class="navbar-toggler hidden-md-up float-xs-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="navBarOpen = !navBarOpen"></button>
+  <div class="collapse navbar-toggleable-sm" id="navbarResponsive" [class.in]="navBarOpen">
+    <ul class="nav navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/thermostats" routerLinkActive="active">Thermostats</a>
+      </li>
+    </ul>
+    <form class="form-inline float-xs-right flex-items-xs-middle" [ngSwitch]="!!(authService.currentUser | async)">
+      <button class="btn btn-outline-success" type="button" *ngSwitchCase="false" (click)="authService.signIn()">Sign In</button>
+      <span *ngSwitchCase="true">
+        {{(authService.currentUser | async).displayName}}
+        <button class="btn btn-sm btn-outline-secondary" type="button" (click)="authService.signOut()">Sign Out</button>
+      </span>
+    </form>
+  </div>
 </nav>
 
 <div class="container-fluid">
